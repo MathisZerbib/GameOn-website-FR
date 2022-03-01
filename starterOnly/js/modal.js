@@ -1,5 +1,4 @@
 
-
 // DOM Elements
 let modalbg = document.querySelector(".bground");
 let modalBtn = document.querySelectorAll(".modal-btn");
@@ -15,6 +14,8 @@ let locationCheckboxes = document.querySelectorAll("input[name='location']");
 let conditionsCheckboxes = document.querySelector("input[name='conditions']");
 let submitBtn = document.querySelector('.btn-submit')
 
+
+
 // Menu burger navigation
 function editNav() {
   var x = document.getElementById("myTopnav");
@@ -24,17 +25,19 @@ function editNav() {
     x.className = "topnav";
   }
 }
-// launch modal event
+
+
+// Launch modal event
 function modalFormLaunch() {
   modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 }
 
-// launch modal form
+// Launch modal form
 function launchModal() {
   modalbg.style.display = "block";
 }
 
-// close modal form
+// Close modal form
 function modalFormClose() {
   closeModal.onclick = function () {
     modalbg.style.display = "none";
@@ -42,7 +45,17 @@ function modalFormClose() {
 }
 
 
-// form validation 
+// Show data error
+function showError(el) {
+  el.setAttribute('data-error-visible', true);
+}
+
+// Hide data error
+function hideError(el) {
+  el.setAttribute('data-error-visible', false)
+}
+
+// Form validation 
 function isFormValid() {
 
   if (isFirstNameValid()) {
@@ -55,9 +68,10 @@ function isFormValid() {
 }
 
 
-// first name validation 
-
+// Firstname validation 
 function isFirstNameValid() {
+  let parent = firstName.closest('div');
+  showError(parent);
   if (firstName.value.length < 2) {
     return false;
   }
@@ -66,21 +80,28 @@ function isFirstNameValid() {
     return false;
   }
 
+  // Match any number in a string
   if (!/^([^0-9]*)$/.test(firstName.value)) {
     return false;
   }
 
+  hideError(parent);
   return true;
 }
 
-// disable submit form button
+
+
+
+
+
+// Disable submit form button
 function disableSubmitBtn() {
   submitBtn.disabled = true;
   submitBtn.style.cursor = 'not-allowed';
   submitBtn.style.opacity = '0.5';
 }
 
-// enable submit form button
+// Enable submit form button
 function enableSubmitBtn() {
   submitBtn.disabled = false;
   submitBtn.style.cursor = 'pointer';
