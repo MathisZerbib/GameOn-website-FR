@@ -33,10 +33,14 @@ disableSubmitBtn();
 
 function disableSubmitBtn () {
   submitBtn.disabled = true;
+  submitBtn.style.cursor = 'not-allowed';
+  submitBtn.style.opacity = '0.5';
 }
 
 function enableSubmitBtn () {
   submitBtn.disabled = false;
+  submitBtn.style.cursor = 'pointer';
+  submitBtn.style.opacity = '1';
 }
 
 
