@@ -24,7 +24,9 @@ lastName.addEventListener('input', isLastNameValid);
 email.addEventListener('input', isEmailValid);
 birthdate.addEventListener('input', isBirthdateValid);
 gameNum.addEventListener('input', isGameNumValid);
-
+for (checkbox of locationCheckboxes) {
+  checkbox.addEventListener('change', isLocationValid);
+}
 
 // Functions 
 
@@ -70,7 +72,7 @@ function hideError(el) {
 // Form validation 
 function isFormValid() {
 
-  if (isFirstNameValid()) {
+  if (isFirstNameValid() && isLastNameValid() && isEmailValid() && isBirthdateValid() && isGameNumValid() && isLocationValid()) {
     enableSubmitBtn();
     return true;
   }
@@ -164,6 +166,19 @@ function isGameNumValid () {
     return true;
 }
 
+
+// Loaction validation 
+function isLocationValid () {
+  let parent = checkbox.closest('div');
+  showError(parent);
+  for (checkbox of locationCheckboxes) {
+    console.log(checkbox);
+    if (checkbox.checked) {
+      hideError(parent);
+      return true;
+    }
+  }
+}
 
 // Disable submit form button
 function disableSubmitBtn() {
