@@ -27,6 +27,8 @@ gameNum.addEventListener('input', isGameNumValid);
 for (checkbox of locationCheckboxes) {
   checkbox.addEventListener('change', isLocationValid);
 }
+conditionsCheckboxes.addEventListener('change', isConditionsValid);
+
 
 // Functions 
 
@@ -72,7 +74,7 @@ function hideError(el) {
 // Form validation 
 function isFormValid() {
 
-  if (isFirstNameValid() && isLastNameValid() && isEmailValid() && isBirthdateValid() && isGameNumValid() && isLocationValid()) {
+  if (isFirstNameValid() && isLastNameValid() && isEmailValid() && isBirthdateValid() && isGameNumValid() && isLocationValid() && isConditionsValid()) {
     enableSubmitBtn();
     return true;
   }
@@ -172,13 +174,24 @@ function isLocationValid () {
   let parent = checkbox.closest('div');
   showError(parent);
   for (checkbox of locationCheckboxes) {
-    console.log(checkbox);
     if (checkbox.checked) {
       hideError(parent);
       return true;
     }
   }
 }
+
+// Conditions validation 
+function isConditionsValid () {
+  let parent = conditionsCheckboxes.closest('div');
+  showError(parent);
+  if (!conditionsCheckboxes.checked) {
+    return false;
+  } 
+    hideError(parent);
+    return true;
+}
+
 
 // Disable submit form button
 function disableSubmitBtn() {
