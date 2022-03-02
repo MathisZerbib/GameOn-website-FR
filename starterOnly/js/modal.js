@@ -21,7 +21,7 @@ document.querySelector('form').addEventListener('change', isFormValid);
 document.querySelector('form').addEventListener('submit', submitForm);
 firstName.addEventListener('input', isFirstNameValid);
 lastName.addEventListener('input', isLastNameValid);
-
+email.addEventListener('input', isEmailValid);
 
 // Functions 
 
@@ -117,8 +117,18 @@ function isLastNameValid () {
   return true;
 }
 
+// Email validation 
+function isEmailValid () {
+  let parent = email.closest('div');
+  showError(parent);
+  // Regex to match email only
+  if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email.value)) {
+    return false;
+  }
+  hideError(parent);
+  return true;
 
-
+}
 
 
 
