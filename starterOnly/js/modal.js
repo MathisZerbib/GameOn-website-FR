@@ -20,7 +20,7 @@ let submitBtn = document.querySelector('.btn-submit')
 document.querySelector('form').addEventListener('change', isFormValid);
 document.querySelector('form').addEventListener('submit', submitForm);
 firstName.addEventListener('input', isFirstNameValid);
-
+lastName.addEventListener('input', isLastNameValid);
 
 
 // Functions 
@@ -91,6 +91,25 @@ function isFirstNameValid() {
 
   // Match any number in a string
   if (!/^([^0-9]*)$/.test(firstName.value)) {
+    return false;
+  }
+
+  hideError(parent);
+  return true;
+}
+
+
+// Lastname validation
+function isLastNameValid () {
+  let parent = lastName.closest('div');
+  showError(parent);
+
+  if (lastName.value.length <= 2) {
+    return false
+  }
+
+  // Match any number in a string
+  if (!/^([^0-9]*)$/.test(lastName.value)) {
     return false;
   }
 
