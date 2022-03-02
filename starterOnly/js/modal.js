@@ -23,6 +23,9 @@ firstName.addEventListener('input', isFirstNameValid);
 lastName.addEventListener('input', isLastNameValid);
 email.addEventListener('input', isEmailValid);
 birthdate.addEventListener('input', isBirthdateValid);
+gameNum.addEventListener('input', isGameNumValid);
+
+
 // Functions 
 
 // Menu burger navigation
@@ -149,6 +152,17 @@ function isBirthdateValid () {
   return true;
 }
 
+
+// Game number validation 
+function isGameNumValid () {
+  let parent = gameNum.closest('div');
+  showError(parent);
+  if (gameNum.value < 0) {
+    return false;
+  } 
+    hideError(parent);
+    return true;
+}
 
 
 // Disable submit form button
