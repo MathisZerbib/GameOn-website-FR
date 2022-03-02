@@ -1,5 +1,6 @@
 
 // DOM Elements
+let modalBody = document.querySelector(".modal-body");
 let modalbg = document.querySelector(".bground");
 let modalBtn = document.querySelectorAll(".modal-btn");
 let formData = document.querySelectorAll(".formData");
@@ -15,6 +16,14 @@ let conditionsCheckboxes = document.querySelector("input[name='conditions']");
 let submitBtn = document.querySelector('.btn-submit')
 
 
+// Event listener
+document.querySelector('form').addEventListener('change', isFormValid);
+document.querySelector('form').addEventListener('submit', submitForm);
+firstName.addEventListener('input', isFirstNameValid);
+
+
+
+// Functions 
 
 // Menu burger navigation
 function editNav() {
@@ -72,11 +81,11 @@ function isFormValid() {
 function isFirstNameValid() {
   let parent = firstName.closest('div');
   showError(parent);
-  if (firstName.value.length < 2) {
+  if (firstName.value.length <= 2) {
     return false;
   }
 
-  if (firstName.value.length > 15) {
+  if (firstName.value.length >= 15) {
     return false;
   }
 
@@ -108,8 +117,35 @@ function enableSubmitBtn() {
   submitBtn.style.opacity = '1';
 }
 
+// Thank You Message modal
+function thankyouMessage() {
+  let txt = document.createElement("P");
+  txt.innerText = 'Merci ! Votre réservation à bien été reçue.';  
+  document.querySelector('.modal-body').appendChild(txt);
+}
+
+function closeBtn() {
+  let btn = document.createElement("BUTTON");     
+  btn.innerHTML = "Fermer";                   
+  document.querySelector('.modal-body').appendChild(btn);
+  btn.className = "btn-submit";
+  btn.style.marginTop = "50px"
+  btn.onclick = function() {
+    modalbg.style.display = "none";
+    };
+}
 
 
+
+function submitForm(e) {
+  e.preventDefault();
+  document.querySelector('.modal-body').innerHTML = " ";
+  modalBody.style.display = "flex";
+  modalBody.style.flexDirection = "column";
+  modalBody.style.justifyContent = "center";
+  thankyouMessage();
+  closeBtn();
+}
 
 
 disableSubmitBtn();
