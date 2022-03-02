@@ -12,6 +12,7 @@ let email = document.querySelector('#email')
 let birthdate = document.querySelector('#birthdate')
 let gameNum = document.querySelector("input[type=number]");
 let locationCheckboxes = document.querySelectorAll("input[name='location']");
+let checkbox = Array.from(locationCheckboxes.values())
 let conditionsCheckboxes = document.querySelector("input[name='conditions']");
 let submitBtn = document.querySelector('.btn-submit')
 
@@ -24,8 +25,9 @@ lastName.addEventListener('input', isLastNameValid);
 email.addEventListener('input', isEmailValid);
 birthdate.addEventListener('input', isBirthdateValid);
 gameNum.addEventListener('input', isGameNumValid);
+
 for (checkbox of locationCheckboxes) {
-  checkbox.addEventListener('change', isLocationValid);
+      checkbox.addEventListener('change', isLocationValid);
 }
 conditionsCheckboxes.addEventListener('change', isConditionsValid);
 
@@ -41,7 +43,6 @@ function editNav() {
     x.className = "topnav";
   }
 }
-
 
 // Launch modal event
 function modalFormLaunch() {
@@ -74,7 +75,13 @@ function hideError(el) {
 // Form validation 
 function isFormValid() {
 
-  if (isFirstNameValid() && isLastNameValid() && isEmailValid() && isBirthdateValid() && isGameNumValid() && isLocationValid() && isConditionsValid()) {
+  if (isFirstNameValid() && 
+      isLastNameValid() && 
+      isEmailValid() && 
+      isBirthdateValid() && 
+      isGameNumValid() && 
+      isLocationValid() && 
+      isConditionsValid()) {
     enableSubmitBtn();
     return true;
   }
@@ -143,8 +150,8 @@ function isBirthdateValid () {
   let selectedDate = new Date(birthdate.value);
   let now = new Date();
   showError(parent);
+  // regex Match birthdate in fr format
   if (/^(((0[1-9]|[12][0-9]|3[01])[- /.](0[13578]|1[02])|(0[1-9]|[12][0-9]|30)[- /.](0[469]|11)|(0[1-9]|1\d|2[0-8])[- /.]02)[- /.]\d{4}|29[- /.]02[- /.](\d{2}(0[48]|[2468][048]|[13579][26])|([02468][048]|[1359][26])00))$/.test(birthdate.value)) {
-      console.log("Regex,", birthdate.value)
     return false;
   }
   
@@ -161,7 +168,7 @@ function isBirthdateValid () {
 function isGameNumValid () {
   let parent = gameNum.closest('div');
   showError(parent);
-  if (gameNum.value < 0) {
+  if (gameNum.value < 0 || gameNum.value == '') {
     return false;
   } 
     hideError(parent);
@@ -210,8 +217,11 @@ function enableSubmitBtn() {
 // Thank You Message modal
 function thankyouMessage() {
   let txt = document.createElement("P");
-  txt.innerText = 'Merci ! Votre réservation à bien été reçue.';  
-  document.querySelector('.modal-body').appendChild(txt);
+  txt.innerText = 'Merci pour votre inscription';  
+  txt.style.marginTop = "auto"
+  modalBody.appendChild(txt);
+  modalBody.style.height = "80vh"
+  modalBody.style.textAlign = "center"
 }
 
 function closeBtn() {
@@ -219,7 +229,7 @@ function closeBtn() {
   btn.innerHTML = "Fermer";                   
   document.querySelector('.modal-body').appendChild(btn);
   btn.className = "btn-submit";
-  btn.style.marginTop = "50px"
+  btn.style.marginTop = "auto"
   btn.onclick = function() {
     modalbg.style.display = "none";
     };
