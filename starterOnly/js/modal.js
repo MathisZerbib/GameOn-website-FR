@@ -1,5 +1,5 @@
-
 // DOM Elements
+
 let modalBody = document.querySelector(".modal-body");
 let modalbg = document.querySelector(".bground");
 let modalBtn = document.querySelectorAll(".modal-btn");
@@ -27,7 +27,7 @@ birthdate.addEventListener('input', isBirthdateValid);
 gameNum.addEventListener('input', isGameNumValid);
 
 for (checkbox of locationCheckboxes) {
-      checkbox.addEventListener('change', isLocationValid);
+    checkbox.addEventListener('change', isLocationValid);
 }
 conditionsCheckboxes.addEventListener('change', isConditionsValid);
 
@@ -36,165 +36,179 @@ conditionsCheckboxes.addEventListener('change', isConditionsValid);
 
 // Menu burger navigation
 function editNav() {
-  var x = document.getElementById("myTopnav");
-  if (x.className === "topnav") {
-    x.className += " responsive";
-  } else {
-    x.className = "topnav";
-  }
+    var x = document.getElementById("nav");
+    if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
+    }
 }
 
 // Launch modal event
 function modalFormLaunch() {
-  modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
+    modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 }
 
 // Launch modal form
 function launchModal() {
-  modalbg.style.display = "block";
+    modalbg.style.display = "block";
 }
 
 // Close modal form
 function modalFormClose() {
-  closeModal.onclick = function () {
-    modalbg.style.display = "none";
-  };
+    closeModal.onclick = function() {
+        modalbg.style.display = "none";
+    };
 }
 
 
 // Show data error
 function showError(el) {
-  el.setAttribute('data-error-visible', true);
+    el.setAttribute('data-error-visible', true);
 }
 
 // Hide data error
 function hideError(el) {
-  el.setAttribute('data-error-visible', false)
+    el.setAttribute('data-error-visible', false)
 }
 
 // Form validation 
 function isFormValid() {
 
-  if (isFirstNameValid() && 
-      isLastNameValid() && 
-      isEmailValid() && 
-      isBirthdateValid() && 
-      isGameNumValid() && 
-      isLocationValid() && 
-      isConditionsValid()) {
-    enableSubmitBtn();
-    return true;
-  }
-  disableSubmitBtn();
-  return false;
+    if (isFirstNameValid() &&
+        isLastNameValid() &&
+        isEmailValid() &&
+        isBirthdateValid() &&
+        isGameNumValid() &&
+        isLocationValid() &&
+        isConditionsValid()) {
+        enableSubmitBtn();
+        return true;
+    }
+    disableSubmitBtn();
+    return false;
 
 }
 
 
 // Firstname validation 
 function isFirstNameValid() {
-  let parent = firstName.closest('div');
-  showError(parent);
-  if (firstName.value.length <= 2) {
-    return false;
-  }
+    let parent = firstName.closest('div');
+    showError(parent);
+    if (firstName.value.length <= 2) {
+        return false;
+    }
 
-  if (firstName.value.length >= 15) {
-    return false;
-  }
+    if (firstName.value.length >= 15) {
+        return false;
+    }
 
-  // Match any number in a string
-  if (!/^([^0-9]*)$/.test(firstName.value)) {
-    return false;
-  }
+    // Match any number in a string
+    if (!/^([^0-9]*)$/.test(firstName.value)) {
+        return false;
+    }
 
-  hideError(parent);
-  return true;
+    hideError(parent);
+    return true;
 }
 
 
 // Lastname validation
-function isLastNameValid () {
-  let parent = lastName.closest('div');
-  showError(parent);
+function isLastNameValid() {
+    let parent = lastName.closest('div');
+    showError(parent);
 
-  if (lastName.value.length <= 2) {
-    return false
-  }
+    if (lastName.value.length <= 2) {
+        return false
+    }
 
-  // Match any number in a string
-  if (!/^([^0-9]*)$/.test(lastName.value)) {
-    return false;
-  }
+    // Match any number in a string
+    if (!/^([^0-9]*)$/.test(lastName.value)) {
+        return false;
+    }
 
-  hideError(parent);
-  return true;
+    hideError(parent);
+    return true;
 }
 
 // Email validation 
-function isEmailValid () {
-  let parent = email.closest('div');
-  showError(parent);
-  // Regex to match email only
-  if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email.value)) {
-    return false;
-  }
-  hideError(parent);
-  return true;
+function isEmailValid() {
+    let parent = email.closest('div');
+    showError(parent);
+    // Regex to match email only
+    if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email.value)) {
+        return false;
+    }
+    hideError(parent);
+    return true;
 
 }
 
 // Birthday validation
-function isBirthdateValid () {
-  let parent = birthdate.closest('div');
-  let selectedDate = new Date(birthdate.value);
-  let now = new Date();
-  showError(parent);
-  // regex Match birthdate in fr format
-  if (/^(((0[1-9]|[12][0-9]|3[01])[- /.](0[13578]|1[02])|(0[1-9]|[12][0-9]|30)[- /.](0[469]|11)|(0[1-9]|1\d|2[0-8])[- /.]02)[- /.]\d{4}|29[- /.]02[- /.](\d{2}(0[48]|[2468][048]|[13579][26])|([02468][048]|[1359][26])00))$/.test(birthdate.value)) {
-    return false;
-  }
-  
-  if (selectedDate > now) {
-    return false;
-  }
+function isBirthdateValid() {
+    let parent = birthdate.closest('div');
+    let birthDate = new Date(birthdate.value);
 
-  hideError(parent);
-  return true;
+    //calculate month difference from current date in time  
+    var month_diff = Date.now() - birthDate.getTime();
+
+    //convert the calculated difference in date format  
+    var age_dt = new Date(month_diff);
+
+    //extract year from date      
+    var year = age_dt.getUTCFullYear();
+
+    //now calculate the age of the user  
+    var age = Math.abs(year - 1970);
+
+    //display the calculated age  
+
+    showError(parent);
+
+
+    if (age <= 15) {
+        return false
+    }
+
+    if (birthDate == "Invalid Date") {
+        return false;
+    }
+    hideError(parent);
+    return true;
 }
 
 
 // Game number validation 
-function isGameNumValid () {
-  let parent = gameNum.closest('div');
-  showError(parent);
-  if (gameNum.value < 0 || gameNum.value == '') {
-    return false;
-  } 
+function isGameNumValid() {
+    let parent = gameNum.closest('div');
+    showError(parent);
+    if (gameNum.value < 0 || gameNum.value == '') {
+        return false;
+    }
     hideError(parent);
     return true;
 }
 
 
 // Loaction validation 
-function isLocationValid () {
-  let parent = checkbox.closest('div');
-  showError(parent);
-  for (checkbox of locationCheckboxes) {
-    if (checkbox.checked) {
-      hideError(parent);
-      return true;
+function isLocationValid() {
+    let parent = checkbox.closest('div');
+    showError(parent);
+    for (checkbox of locationCheckboxes) {
+        if (checkbox.checked) {
+            hideError(parent);
+            return true;
+        }
     }
-  }
 }
 
 // Conditions validation 
-function isConditionsValid () {
-  let parent = conditionsCheckboxes.closest('div');
-  showError(parent);
-  if (!conditionsCheckboxes.checked) {
-    return false;
-  } 
+function isConditionsValid() {
+    let parent = conditionsCheckboxes.closest('div');
+    showError(parent);
+    if (!conditionsCheckboxes.checked) {
+        return false;
+    }
     hideError(parent);
     return true;
 }
@@ -202,57 +216,52 @@ function isConditionsValid () {
 
 // Disable submit form button
 function disableSubmitBtn() {
-  submitBtn.disabled = true;
-  submitBtn.style.cursor = 'not-allowed';
-  submitBtn.style.opacity = '0.5';
+    submitBtn.disabled = true;
+    submitBtn.style.cursor = 'not-allowed';
+    submitBtn.style.opacity = '0.5';
 }
 
 // Enable submit form button
 function enableSubmitBtn() {
-  submitBtn.disabled = false;
-  submitBtn.style.cursor = 'pointer';
-  submitBtn.style.opacity = '1';
+    submitBtn.disabled = false;
+    submitBtn.style.cursor = 'pointer';
+    submitBtn.style.opacity = '1';
 }
 
 // Thank You Message modal
 function thankyouMessage() {
-  let txt = document.createElement("P");
-  txt.innerText = 'Merci pour votre inscription';  
-  txt.style.marginTop = "auto"
-  modalBody.appendChild(txt);
-  modalBody.style.height = "80vh"
-  modalBody.style.textAlign = "center"
+    let txt = document.createElement("P");
+    txt.innerText = 'Merci pour votre inscription';
+    txt.style.marginTop = "auto"
+    modalBody.appendChild(txt);
+    modalBody.style.height = "80vh"
+    modalBody.style.textAlign = "center"
 }
 
 function closeBtn() {
-  let btn = document.createElement("BUTTON");     
-  btn.innerHTML = "Fermer";                   
-  document.querySelector('.modal-body').appendChild(btn);
-  btn.className = "btn-submit";
-  btn.style.marginTop = "auto"
-  btn.onclick = function() {
-    modalbg.style.display = "none";
+    let btn = document.createElement("BUTTON");
+    btn.innerHTML = "Fermer";
+    document.querySelector('.modal-body').appendChild(btn);
+    btn.className = "btn-submit";
+    btn.style.marginTop = "auto"
+    btn.onclick = function() {
+        modalbg.style.display = "none";
     };
 }
 
 
 
 function submitForm(e) {
-  e.preventDefault();
-  document.querySelector('.modal-body').innerHTML = " ";
-  modalBody.style.display = "flex";
-  modalBody.style.flexDirection = "column";
-  modalBody.style.justifyContent = "center";
-  thankyouMessage();
-  closeBtn();
+    e.preventDefault();
+    document.querySelector('.modal-body').innerHTML = " ";
+    modalBody.style.display = "flex";
+    modalBody.style.flexDirection = "column";
+    modalBody.style.justifyContent = "center";
+    thankyouMessage();
+    closeBtn();
 }
 
 
 disableSubmitBtn();
 modalFormLaunch();
 modalFormClose();
-
-
-
-
-
