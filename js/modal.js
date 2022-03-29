@@ -15,6 +15,7 @@ let locationCheckboxes = document.querySelectorAll("input[name='location']");
 let checkbox = Array.from(locationCheckboxes.values())
 let conditionsCheckboxes = document.querySelector("input[name='conditions']");
 let submitBtn = document.querySelector('.btn-submit')
+let nav = document.getElementById("nav");
 
 
 // Event listener
@@ -25,6 +26,7 @@ lastName.addEventListener('input', isLastNameValid);
 email.addEventListener('input', isEmailValid);
 birthdate.addEventListener('input', isBirthdateValid);
 gameNum.addEventListener('input', isGameNumValid);
+nav.addEventListener("click", editNav);
 
 for (checkbox of locationCheckboxes) {
     checkbox.addEventListener('change', isLocationValid);
@@ -32,15 +34,15 @@ for (checkbox of locationCheckboxes) {
 conditionsCheckboxes.addEventListener('change', isConditionsValid);
 
 
-// Functions 
+/* Functions */
+
 
 // Menu burger navigation
 function editNav() {
-    var x = document.getElementById("nav");
-    if (x.className === "topnav") {
-        x.className += " responsive";
+    if (nav.className === "topnav") {
+        nav.className += " responsive";
     } else {
-        x.className = "topnav";
+        nav.className = "topnav";
     }
 }
 
