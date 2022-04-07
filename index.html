@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="utf-8" />
     <title>Reservation</title>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <link rel="stylesheet" href="../css/modal.css" />
+    <link rel="stylesheet" href="./assets/css/modal.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans" rel="stylesheet" />
 </head>
@@ -13,7 +13,7 @@
 <body>
     <nav class="topnav" id="nav">
         <div class="header-logo">
-            <img alt="logo" src="../images/Logo.png" width="auto" height="auto" />
+            <img alt="logo" src="./assets/img/Logo.png" width="auto" height="auto" />
         </div>
         <div class="main-navbar">
 
@@ -42,7 +42,7 @@
           </button>
             </div>
             <div class="hero-img">
-                <img src="../images/bg_img.jpg" alt="img" />
+                <img src="./assets/img/bg_img.jpg" alt="img" />
             </div>
             <button class="btn-signup modal-btn">
           je m'inscris
@@ -54,11 +54,11 @@
                 <span class="close"></span>
                 <div class="modal-body">
                     <form name="reserve" action="index.html" method="get" onsubmit="submitForm">
-                        <div class="formData" data-error="Veuillez entrer 2 caractères ou plus pour le champ du prénom">
+                        <div class="formData" data-error="Veuillez entrer au moins 2  caractères  pour le champ du prénom">
                             <label for="first">Prénom</label><br>
                             <input class="text-control" type="text" id="first" name="first" minlength="2" /><br>
                         </div>
-                        <div class="formData" data-error="Veuillez entrer 2 caractères ou plus pour le champ du nom">
+                        <div class="formData" data-error="Veuillez entrer au moins 2  caractères  pour le champ du nom">
                             <label for="last">Nom</label><br>
 
                             <input class="text-control" type="text" id="last" name="last" /><br>

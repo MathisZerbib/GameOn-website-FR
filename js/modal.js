@@ -6,6 +6,8 @@ let modalBtn = document.querySelectorAll(".modal-btn");
 let formData = document.querySelectorAll(".formData");
 let closeModal = document.querySelector(".close");
 
+
+// variables & constants def 
 let firstName = document.querySelector('#first')
 let lastName = document.querySelector('#last')
 let email = document.querySelector('#email')
@@ -15,7 +17,7 @@ let locationCheckboxes = document.querySelectorAll("input[name='location']");
 let checkbox = Array.from(locationCheckboxes.values())
 let conditionsCheckboxes = document.querySelector("input[name='conditions']");
 let submitBtn = document.querySelector('.btn-submit')
-let nav = document.getElementById("nav");
+let nav = document.querySelector("nav");
 
 
 // Event listener
@@ -97,7 +99,7 @@ function isFormValid() {
 function isFirstNameValid() {
     let parent = firstName.closest('div');
     showError(parent);
-    if (firstName.value.length <= 2) {
+    if (firstName.value.length <= 1) {
         return false;
     }
 
@@ -120,7 +122,7 @@ function isLastNameValid() {
     let parent = lastName.closest('div');
     showError(parent);
 
-    if (lastName.value.length <= 2) {
+    if (lastName.value.length <= 1) {
         return false
     }
 
@@ -267,3 +269,5 @@ function submitForm(e) {
 disableSubmitBtn();
 modalFormLaunch();
 modalFormClose();
+
+// Merci pour votre attention ! :)

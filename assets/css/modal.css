@@ -48,7 +48,7 @@ img {
 .topnav a {
     float: left;
     display: block;
-    color: #000000;
+    color: red;
     text-align: center;
     padding: 12px 12px;
     margin: 5px;
@@ -85,6 +85,7 @@ img {
         position: relative;
     }
     .topnav.responsive .icon {
+        color: white;
         position: absolute;
         right: 0;
         top: 0;
@@ -97,6 +98,20 @@ img {
 }
 
 @media screen and (max-width: 540px) {
+    .hero-text {
+        width: 80%;
+    }
+    .hero-content {
+        padding: 0!important;
+    }
+    .content {
+        width: 95%!important;
+        height: 96vh;
+    }
+    .text-control {
+        font-size: 15px!important;
+        height: 35px!important;
+    }
     .topnav a {
         display: none;
     }
@@ -108,7 +123,6 @@ img {
 }
 
 main {
-    font-size: 130%;
     font-weight: bolder;
     color: black;
     padding-top: 0.5vw;
@@ -170,12 +184,12 @@ main {
     top: 0;
     height: 100%;
     width: 100%;
-    overflow: auto;
+    overflow: hidden;
     background-color: rgba(26, 39, 156, 0.4);
 }
 
 .content {
-    margin: 5% auto;
+    margin: 2% auto;
     width: 100%;
     max-width: 500px;
     animation-name: modalopen;
@@ -218,11 +232,11 @@ input {
 
 .formData[data-error]::after {
     content: attr(data-error);
-    font-size: 0.4em;
+    font-size: 0.6em;
     color: #e54858;
     display: block;
-    margin-top: 7px;
-    margin-bottom: 7px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     text-align: right;
     line-height: 0.3;
     opacity: 0;
@@ -439,7 +453,7 @@ input {
 }
 
 .hero-section {
-    min-height: 93vh;
+    min-height: 64vh;
     border-radius: 10px;
     display: grid;
     grid-template-columns: repeat(12, 1fr);
@@ -532,7 +546,6 @@ footer {
     .hero-content {
         background: #fff;
         color: #000;
-        padding: 20px;
     }
     .hero-content::after {
         content: unset;
@@ -545,7 +558,7 @@ footer {
         white-space: normal;
     }
     .hero-text {
-        width: unset;
+        width: 80%;
         font-size: 1.5rem;
     }
     .hero-img img {
@@ -572,3 +585,15 @@ footer {
         opacity: 1;
     }
 }
+
+
+/* 
+
+Activer les messages d'erreur seulement à la soumission du formulaire
+
+Le champ date doit être cliquable
+
+Mettre un pointer sur l'icone date
+
+Corriger la logique de la sélection de date
+*/
