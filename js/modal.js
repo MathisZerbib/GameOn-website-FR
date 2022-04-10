@@ -5,6 +5,7 @@ let modalbg = document.querySelector(".bground");
 let modalBtn = document.querySelectorAll(".modal-btn");
 let formData = document.querySelectorAll(".formData");
 let closeModal = document.querySelector(".close");
+let form = document.querySelector('form');
 
 
 // variables & constants def 
@@ -21,20 +22,14 @@ let nav = document.querySelector("nav");
 
 
 // Event listener
-document.querySelector('form').addEventListener('change', isFormValid);
-document.querySelector('form').addEventListener('submit', submitForm);
-firstName.addEventListener('input', isFirstNameValid);
-lastName.addEventListener('input', isLastNameValid);
-email.addEventListener('input', isEmailValid);
-birthdate.addEventListener('input', isBirthdateValid);
-gameNum.addEventListener('input', isGameNumValid);
+form.addEventListener('change', isFormFilled);
+form.addEventListener('submit', submitForm);
+
 nav.addEventListener("click", editNav);
 
 for (checkbox of locationCheckboxes) {
     checkbox.addEventListener('change', isLocationValid);
 }
-conditionsCheckboxes.addEventListener('change', isConditionsValid);
-
 
 /* Functions */
 
@@ -76,6 +71,30 @@ function hideError(el) {
     el.setAttribute('data-error-visible', false)
 }
 
+
+function validateForm() {
+    var fields = [firstName, lastName, birthdate, gameNum]
+
+    var i, l = fields.length;
+    var fieldname;
+    for (i = 0; i < l; i++) {
+        fieldname = fields[i];
+        if (fieldname.value === "") {
+            console.log(fieldname + " can not be empty");
+            return false;
+        }
+    }
+    return true;
+}
+
+
+function isFormFilled() {
+    if (validateForm()) {
+        enableSubmitBtn();
+    } else {
+        disableSubmitBtn();
+    }
+}
 // Form validation 
 function isFormValid() {
 
@@ -86,13 +105,12 @@ function isFormValid() {
         isGameNumValid() &&
         isLocationValid() &&
         isConditionsValid()) {
-        enableSubmitBtn();
         return true;
     }
-    disableSubmitBtn();
     return false;
 
 }
+
 
 
 // Firstname validation 
@@ -236,12 +254,15 @@ function closeBtn() {
 
 function submitForm(e) {
     e.preventDefault();
-    document.querySelector('.modal-body').innerHTML = " ";
-    modalBody.style.display = "flex";
-    modalBody.style.flexDirection = "column";
-    modalBody.style.justifyContent = "center";
-    thankyouMessage();
-    closeBtn();
+    if (isFormValid()) {
+        document.querySelector('.modal-body').innerHTML = " ";
+        modalBody.style.display = "flex";
+        modalBody.style.flexDirection = "column";
+        modalBody.style.justifyContent = "center";
+        thankyouMessage();
+        closeBtn();
+    }
+
 }
 
 

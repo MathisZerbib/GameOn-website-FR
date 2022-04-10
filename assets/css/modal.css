@@ -230,6 +230,11 @@ input {
     height: 48px;
 }
 
+#birthdate,
+#birthdate::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+}
+
 .formData[data-error]::after {
     content: attr(data-error);
     font-size: 0.6em;
@@ -585,17 +590,3 @@ footer {
         opacity: 1;
     }
 }
-
-
-/* 
-
-Activer les messages d'erreur seulement à la soumission du formulaire
-
-Le champ date doit être cliquable
-
-Mettre un pointer sur l'icone date
-
-Corriger la logique de la sélection de date
-
-revoir si 
-*/
