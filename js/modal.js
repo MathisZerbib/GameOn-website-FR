@@ -72,6 +72,17 @@ function hideError(el) {
 }
 
 
+function checkIfChecked(textinputs) {
+    var empty = [].filter.call(textinputs, function(el) {
+        return !el.checked
+    });
+
+    if (textinputs.length == empty.length) {
+        return false;
+    }
+}
+
+
 function validateForm() {
     var fields = [firstName, lastName, birthdate, gameNum]
 
@@ -79,8 +90,14 @@ function validateForm() {
     var fieldname;
     for (i = 0; i < l; i++) {
         fieldname = fields[i];
+        if (checkIfChecked(locationCheckboxes)) {
+            return false
+        }
+        if (checkIfChecked(conditionsCheckboxes)) {
+            return false
+        }
+
         if (fieldname.value === "") {
-            console.log(fieldname + " can not be empty");
             return false;
         }
     }
@@ -170,7 +187,11 @@ function isEmailValid() {
 function isBirthdateValid() {
     let parent = birthdate.closest('div');
     let birthDate = new Date(birthdate.value);
+    let reg = /^\d{4}-\d{2}-\d{2}$/;
     showError(parent);
+    if (!birthdate.value.match(reg)) {
+        return false;
+    }
     if (birthDate == "Invalid Date") {
         return false;
     }
@@ -201,6 +222,7 @@ function isLocationValid() {
             return true;
         }
     }
+    return false
 }
 
 // Conditions validation 
