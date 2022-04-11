@@ -89,6 +89,8 @@ img {
         position: absolute;
         right: 0;
         top: 0;
+        background-color: red;
+        border-radius: 15px;
     }
     .topnav.responsive a {
         float: none;
@@ -209,10 +211,10 @@ main {
 
 label {
     font-family: var(--font-default);
-    font-size: 17px;
+    font-size: 14px;
     font-weight: normal;
     display: inline-block;
-    margin-bottom: 11px;
+    margin-bottom: 5px;
 }
 
 input {
