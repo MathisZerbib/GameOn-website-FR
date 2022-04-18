@@ -18,7 +18,7 @@ let locationCheckboxes = document.querySelectorAll("input[name='location']");
 let checkbox = Array.from(locationCheckboxes.values())
 let conditionsCheckboxes = document.querySelector("input[name='conditions']");
 let submitBtn = document.querySelector('.btn-submit')
-let nav = document.querySelector("nav");
+let nav = document.querySelector(".main-navbar");
 
 
 // Event listener
@@ -36,10 +36,11 @@ for (checkbox of locationCheckboxes) {
 
 // Menu burger navigation
 function editNav() {
-    if (nav.className === "topnav") {
-        nav.className += " responsive";
+    let navToggle = document.querySelector('nav');
+    if (navToggle.className === "topnav") {
+        navToggle.className += " responsive";
     } else {
-        nav.className = "topnav";
+        navToggle.className = "topnav";
     }
 }
 

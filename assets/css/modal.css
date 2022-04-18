@@ -78,6 +78,10 @@ img {
     display: none;
 }
 
+.imageClickable {
+    cursor: pointer;
+}
+
 @media screen and (max-width: 768px) {
     .topnav a {
         display: none;
@@ -566,7 +570,7 @@ footer {
         display: none;
     }
     .hero-headline {
-        font-size: 4.5rem;
+        font-size: 2rem;
         white-space: normal;
     }
     .hero-text {
