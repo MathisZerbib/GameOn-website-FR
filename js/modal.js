@@ -100,6 +100,7 @@ function validateForm() {
         if (fieldname.value === "") {
             return false;
         }
+
     }
     return true;
 }
@@ -112,8 +113,16 @@ function isFormFilled() {
         disableSubmitBtn();
     }
 }
+
 // Form validation 
 function isFormValid() {
+    isFirstNameValid()
+    isLastNameValid()
+    isEmailValid()
+    isBirthdateValid()
+    isGameNumValid()
+    isLocationValid()
+    isConditionsValid()
 
     if (isFirstNameValid() &&
         isLastNameValid() &&
@@ -132,93 +141,81 @@ function isFormValid() {
 
 // Firstname validation 
 function isFirstNameValid() {
-    let parent = firstName.closest('div');
-    showError(parent);
-    if (firstName.value.length <= 1) {
+    let pFirstName = firstName.closest('div');
+    if (firstName.value.length <= 1 || firstName.value.length >= 15 || !/^([^0-9]*)$/.test(firstName.value)) {
+        showError(pFirstName);
         return false;
+    } else {
+        hideError(pFirstName);
+        return true;
     }
-
-    if (firstName.value.length >= 15) {
-        return false;
-    }
-
-    // Match any number in a string
-    if (!/^([^0-9]*)$/.test(firstName.value)) {
-        return false;
-    }
-
-    hideError(parent);
-    return true;
 }
 
 
 // Lastname validation
 function isLastNameValid() {
-    let parent = lastName.closest('div');
-    showError(parent);
+    let pLastName = lastName.closest('div');
 
-    if (lastName.value.length <= 1) {
+
+    if (lastName.value.length <= 1 || !/^([^0-9]*)$/.test(lastName.value)) {
+        showError(pLastName);
         return false
+    } else {
+        hideError(pLastName);
+        return true;
     }
-
-    // Match any number in a string
-    if (!/^([^0-9]*)$/.test(lastName.value)) {
-        return false;
-    }
-
-    hideError(parent);
-    return true;
 }
 
 // Email validation 
 function isEmailValid() {
-    let parent = email.closest('div');
-    showError(parent);
+    let pEmail = email.closest('div');
     // Regex to match email only
     if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email.value)) {
+        showError(pEmail);
         return false;
+    } else {
+        hideError(pEmail);
+        return true;
     }
-    hideError(parent);
-    return true;
 
 }
 
 // Birthday validation
 function isBirthdateValid() {
-    let parent = birthdate.closest('div');
+    let pBirthdate = birthdate.closest('div');
     let birthDate = new Date(birthdate.value);
     let reg = /^\d{4}-\d{2}-\d{2}$/;
-    showError(parent);
-    if (!birthdate.value.match(reg)) {
+    showError(pBirthdate);
+    if (!birthdate.value.match(reg) || birthDate == "Invalid Date") {
         return false;
+    } else {
+        hideError(pBirthdate);
+        return true;
     }
-    if (birthDate == "Invalid Date") {
-        return false;
-    }
-    hideError(parent);
-    return true;
 }
 
 
 // Game number validation 
 function isGameNumValid() {
-    let parent = gameNum.closest('div');
-    showError(parent);
+    let pGameNum = gameNum.closest('div');
+
     if (gameNum.value < 0 || gameNum.value == '') {
+        showError(pGameNum);
         return false;
+    } else {
+        hideError(pGameNum);
+        return true;
     }
-    hideError(parent);
-    return true;
 }
 
 
 // Loaction validation 
 function isLocationValid() {
-    let parent = checkbox.closest('div');
-    showError(parent);
+    let pCheckbox = checkbox.closest('div');
+    showError(pCheckbox);
     for (checkbox of locationCheckboxes) {
         if (checkbox.checked) {
-            hideError(parent);
+            hideError(pCheckbox);
             return true;
         }
     }
@@ -227,12 +224,12 @@ function isLocationValid() {
 
 // Conditions validation 
 function isConditionsValid() {
-    let parent = conditionsCheckboxes.closest('div');
-    showError(parent);
+    let pConditionsCheckboxes = conditionsCheckboxes.closest('div');
+    showError(pConditionsCheckboxes);
     if (!conditionsCheckboxes.checked) {
         return false;
     }
-    hideError(parent);
+    hideError(pConditionsCheckboxes);
     return true;
 }
 
