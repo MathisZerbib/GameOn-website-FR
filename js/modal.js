@@ -22,6 +22,22 @@ let nav = document.querySelector(".main-navbar");
 
 
 // Event listener
+document.querySelector('form').addEventListener('focus', isFormValid);
+document.querySelector('form').addEventListener('submit', submitForm);
+var fields = [firstName, lastName, birthdate, gameNum]
+
+var i, l = fields.length;
+var fieldname;
+for (i = 0; i < l; i++) {
+
+}
+
+firstName.addEventListener('input', isFirstNameValid);
+lastName.addEventListener('input', isLastNameValid);
+email.addEventListener('input', isEmailValid);
+birthdate.addEventListener('input', isBirthdateValid);
+gameNum.addEventListener('input', isGameNumValid);
+
 form.addEventListener('change', isFormFilled);
 form.addEventListener('submit', submitForm);
 
@@ -117,13 +133,6 @@ function isFormFilled() {
 
 // Form validation 
 function isFormValid() {
-    isFirstNameValid()
-    isLastNameValid()
-    isEmailValid()
-    isBirthdateValid()
-    isGameNumValid()
-    isLocationValid()
-    isConditionsValid()
 
     if (isFirstNameValid() &&
         isLastNameValid() &&
